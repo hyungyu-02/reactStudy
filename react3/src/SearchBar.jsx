@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SearchBar = ({ filterText, inStockOnly, onFilterTextChange, onInStockOnlyChange }) => {
+const ShowSearchBar = ({ filterText, inStockOnly, onFilterTextChange, onInStockOnlyChange }) => {
   const handleTextChange = (e) => {
     onFilterTextChange(e.target.value);
   };
@@ -16,6 +16,21 @@ const SearchBar = ({ filterText, inStockOnly, onFilterTextChange, onInStockOnlyC
         Only show products in stock
       </label>
     </form>
+  )
+}
+
+const SearchBar = ({ filterText, inStockOnly, onFilterTextChange, onInStockOnlyChange, mode }) => {
+  let content = null;
+  if(mode === 'SHOW'){
+    content = <ShowSearchBar filterText={filterText} inStockOnly={inStockOnly} onFilterTextChange={onFilterTextChange} onInStockOnlyChange={onInStockOnlyChange} />;
+  } else if(mode === 'UPDATE'){
+    content = <div></div>;
+  }
+
+  return (
+    <React.Fragment>
+      {content}
+    </React.Fragment>
   )
 }
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const InputBar = ({ addProduct }) => {
+const ShowInputBar = ({ addProduct }) => {
     const [newProduct, setNewProduct] = useState({
         id: "0", category: "", price: 0, stocked: true, name: "",
     });
@@ -11,8 +11,12 @@ const InputBar = ({ addProduct }) => {
 
     const handleAddNewProduct = () => {
         const productWithId = {...newProduct, id:Date.now().toString()};
+        console.log(productWithId);
         addProduct(productWithId);
-        setNewProduct({category:"",price:0,stocked:true,name:""});
+        //setNewProduct({category:"",price:0,stocked:true,name:""});
+        const resetProduct = {id:"0", category:"", price:0, stocked:true, name:""};
+        setNewProduct(resetProduct);
+        console.log(newProduct);
     };
   
     return (
@@ -26,7 +30,7 @@ const InputBar = ({ addProduct }) => {
         />
 
         <label>Is Stocked</label>
-        <input type='checkbox' value={newProduct.stocked}
+        <input type='checkbox' defaultChecked={newProduct.stocked}
         onChange={(e) => handleChange(e.target.checked, "stocked")}
         />
 
@@ -36,6 +40,20 @@ const InputBar = ({ addProduct }) => {
 
         <button onClick={handleAddNewProduct} type={"button"}>Click</button>
     </form>
+  );
+}
+
+const InputBar = ({ addProduct, mode }) => {
+  let content = null;
+  if(mode === 'SHOW'){
+    content = <ShowInputBar addProduct={addProduct} />;
+  }else if(mode === 'UPDATE'){
+    content = <div></div>;
+  }
+    return (
+        <React.Fragment>
+            {content}
+        </React.Fragment>
   );
 };
 

@@ -1,11 +1,12 @@
 import React from 'react'
 
-const ProductRow = ({product, deleteProduct}) => {
+const ProductRow = ({product, deleteProduct, UpdateButtonCLicked}) => {
   return (
     <tr>
       <td style={{color:product.stocked ? 'black' : 'red'}}>{product.name}</td>
-      <td>{product.price}</td>
-      <td><sapn onClick={()=>{deleteProduct(product.id)}}>🗑️</sapn></td>
+      <td>{product.price} $</td>
+      <td><span onClick={()=>{deleteProduct(product.id)}}>🗑️</span></td>
+      <td><span onClick={()=>{UpdateButtonCLicked(product)}} >✏️</span></td>
     </tr>
   );
 };

@@ -30,6 +30,18 @@ const FilterableProductTable = () => {
     setProduct(deletedProducts);
   };
 
+  const updateProduct = (updatedProduct) => {
+    const newUpdatedProducts = [];
+    for(let i = 0; i < product.length; i++){
+      if(updatedProduct.id !== product[i].id){
+        newUpdatedProducts.push(product[i]);
+      }
+    }
+    newUpdatedProducts.push(updatedProduct);
+    setProduct(newUpdatedProducts);
+  };
+
+  const [mode, setMode] = useState('SHOW');
 
   return (
     <div>
@@ -38,9 +50,20 @@ const FilterableProductTable = () => {
       inStockOnly={inStockOnly}
       onFilterTextChange={setFilterText}
       onInStockOnlyChange={setInStockOnly}
+      mode={mode}
       />
-      <ProductTable product={product} filterText={filterText} inStockOnly={inStockOnly} deleteProduct={deleteProduct} />
-      <InputBar addProduct={addProduct} />
+
+      <ProductTable
+      product={product}
+      filterText={filterText}
+      inStockOnly={inStockOnly}
+      deleteProduct={deleteProduct}
+      updateProduct={updateProduct}
+      mode={mode}
+      setMode={setMode}
+      />
+
+      <InputBar addProduct={addProduct} mode={mode} />
     </div>
   )
 }

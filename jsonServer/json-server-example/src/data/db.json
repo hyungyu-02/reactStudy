@@ -1,0 +1,14 @@
+{
+  "posts": [
+    {
+      "id": "2",
+      "title": "Post 2",
+      "content": "This is the second post"
+    },
+    {
+      "id": "3927",
+      "title": "제목",
+      "content": "컨텐트"
+    }
+  ]
+}
